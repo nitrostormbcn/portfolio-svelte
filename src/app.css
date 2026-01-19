@@ -1,0 +1,26 @@
+.center-900 {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+::selection {
+    background: var(--color-primary);
+    color: var(--color-text);
+}
+
+:root {
+    /* Brand */
+    --color-primary: #f74f4f;
+    --color-primary-hover: #ff8e8e;
+
+    /* Neutrals */
+    --color-bg: #ededed;
+    --color-text: #111827;
+    --color-muted: #6b7280;
+
+    /* State */
+    --color-success: #22c55e;
+    --color-warning: #f59e0b;
+    --color-error: #ef4444;
+}
