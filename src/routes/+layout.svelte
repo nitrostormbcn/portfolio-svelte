@@ -16,6 +16,10 @@
 		margin: 0;
 
 		font-family: 'Fira Code', monospace;
+		font-variant-ligatures: common-ligatures;
+		font-feature-settings:
+			'liga' 1,
+			'calt' 1;
 		font-optical-sizing: auto;
 		font-weight: 300;
 		font-style: normal;
