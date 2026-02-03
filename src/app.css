@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
 
-.center-900 {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
 ::selection {
     background: var(--color-primary);
     color: var(--color-text);

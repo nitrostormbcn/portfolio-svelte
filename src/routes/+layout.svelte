@@ -7,19 +7,21 @@
 	let { children } = $props();
 </script>
 
-<div class="page"><NavBar />{@render children()}<Footer /></div>
+<div class="page justify-center">
+	<NavBar />
+	{@render children()}
+	<Footer />
+</div>
 
 <style>
 	:global(body) {
-		margin: 0;
 		font-family: 'Fira Code', monospace;
 		font-variant-ligatures: common-ligatures;
 		font-feature-settings:
 			'liga' 1,
 			'calt' 1;
 		font-optical-sizing: auto;
-		font-weight: 300;
-		font-style: normal;
+		font-weight: 400;
 		color: var(--color-text);
 		background: var(--color-bg);
 	}

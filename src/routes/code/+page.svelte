@@ -8,8 +8,8 @@
 	];
 </script>
 
-<div class="content center-900">
-	<h1>Code vault 💾</h1>
+<div class="content mx-0 my-auto w-4xl">
+	<h1 class="justi text-5xl mb-5">Code vault 💾</h1>
 	<div class="projects">
 		{#each projects as project}
 			<ProjectCard {project}></ProjectCard>
@@ -18,11 +18,6 @@
 </div>
 
 <style>
-	h1 {
-		font-size: 3em;
-		margin-top: 2em;
-		margin-bottom: 1.5em;
-	}
 	.projects {
 		padding: 4px;
 		overflow-y: auto;

@@ -3,7 +3,7 @@
 	import NavLink from './NavLink.svelte';
 </script>
 
-<nav class="navbar center-900">
+<nav class="navbar mx-0 my-auto w-4xl self-center">
 	<a href="/">
 		<RocketLogo />
 	</a>

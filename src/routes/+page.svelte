@@ -1,16 +1,13 @@
-<div class="content center-900">
-	<h1>This is <span style="color: var(--color-primary);">Nitrostorm</span>'s project vault!</h1>
-	<p>You'll find some cool code projects, 
-        some art I made, and maybe some hidden cats 😼</p>
+<div class="content my-auto w-4xl">
+	<h1 class="text-7xl mb-10">
+		This is <span style="color: var(--color-primary);">Nitrostorm</span>'s project vault!
+	</h1>
+	<p class="text-3xl">
+		You'll find some cool code projects, some art I made, and maybe some hidden cats 😼
+	</p>
 </div>
 
 <style>
-	h1 {
-		font-size: 4em;
-	}
-    p {
-        font-size: 2em;
-    }
 	.content {
 		display: flex;
 		align-items: center;
