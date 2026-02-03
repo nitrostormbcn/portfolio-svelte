@@ -9,7 +9,7 @@
 </script>
 
 <div class="content mx-0 my-auto w-4xl">
-	<h1 class="justi text-5xl mb-5">Code vault 💾</h1>
+	<h1 class="justi text-5xl mb-5 mt-15">Code vault 💾</h1>
 	<div class="projects">
 		{#each projects as project}
 			<ProjectCard {project}></ProjectCard>
