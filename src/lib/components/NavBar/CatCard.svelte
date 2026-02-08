@@ -52,7 +52,7 @@
 <div
 	bind:this={card}
 	onmousedown={starDrag}
-	class="unselectable absolute h-30 w-30 rounded-md bg-gray-300"
+	class="unselectable absolute h-30 w-30 content-center rounded-md bg-gray-300 text-center"
 	style="top: 90px; left: 220px;"
 >
 	Hola
