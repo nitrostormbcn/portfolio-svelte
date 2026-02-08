@@ -1,27 +1,4 @@
-<script lang="ts">
-	let chars: String[] = ['·', '~', '*', '@', '#', '$', '%', '^', '&'];
-	let index: number = $state(0);
-	let intervalId: number;
-
-	function startInterval() {
-		index++;
-		clearInterval(intervalId);
-		intervalId = setInterval(() => {
-			if (index < chars.length - 1) {
-				index++;
-			} else {
-				index = 0;
-			}
-		}, 100);
-	}
-
-	function stopInterval() {
-		index = 0;
-		clearInterval(intervalId);
-	}
-</script>
-
-<p class="dot" onmouseenter={startInterval} onmouseleave={stopInterval}>{chars[index]}</p>
+<p class="dot">·</p>
 
 <style>
 	.dot {
