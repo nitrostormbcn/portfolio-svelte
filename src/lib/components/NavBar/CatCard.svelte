@@ -24,7 +24,6 @@
 			if (xf >= 220) {
 				xf = 220;
 			}
-			console.log(xf);
 			card.style.left = xf.toString() + 'px';
 		}
 	}

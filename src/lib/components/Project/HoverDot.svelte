@@ -19,8 +19,6 @@
 		index = 0;
 		clearInterval(intervalId);
 	}
-
-	$inspect(index);
 </script>
 
 <p class="dot" onmouseenter={startInterval} onmouseleave={stopInterval}>{chars[index]}</p>
