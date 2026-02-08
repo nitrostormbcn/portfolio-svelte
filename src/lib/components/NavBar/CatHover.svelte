@@ -1,5 +1,7 @@
 <script lang="ts">
 	import CatCard from './CatCard.svelte';
+	import { catObject } from '$lib/data.svelte';
+
 	let catHover: Boolean = $state(false);
 	let isDragging: boolean = $state(false);
 	let isAway: boolean = $state(false);
@@ -22,14 +24,12 @@
 			catHover = false;
 		}
 	}
-
-	$inspect(isAway);
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div class="relative h-16 w-16" onmouseenter={mouseenter}>
 	<div class="absolute top-0 left-0 z-20 h-full w-full">
-		<p class="flex h-full items-center text-center">🐈 0/7</p>
+		<p class="flex h-full items-center text-center">🐈 {catObject.total}/7</p>
 	</div>
 	{#if catHover}
 		<!-- svelte-ignore a11y_no_static_element_interactions -->

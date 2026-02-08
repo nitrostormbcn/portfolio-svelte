@@ -1,8 +1,17 @@
 <script lang="ts">
+	import { catObject } from '$lib/data.svelte';
+	import { onMount } from 'svelte';
+
 	let card: any = $state();
 	let { isDragging = $bindable() } = $props();
 	let x: number = $state(0);
 	let x0: number = $state(0);
+
+	onMount(() => {
+		if (catObject.chopperCatFound) {
+			card.style.left = '120px';
+		}
+	});
 
 	function starDrag(event: MouseEvent) {
 		isDragging = true;
@@ -20,6 +29,7 @@
 			let xf = x0 + offset;
 			if (xf <= 120) {
 				xf = 120;
+				catFound();
 			}
 			if (xf >= 220) {
 				xf = 220;
@@ -27,6 +37,15 @@
 			card.style.left = xf.toString() + 'px';
 		}
 	}
+
+	function catFound() {
+		if (!catObject.chopperCatFound) {
+			catObject.chopperCatFound = true;
+			catObject.total += 1;
+		}
+	}
+
+	$inspect(catObject);
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->

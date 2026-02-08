@@ -9,3 +9,8 @@ interface PauArt {
 	title: String;
 	thumbnail: String;
 }
+
+type CatObject = {
+	chopperCatFound: boolean;
+	total: number;
+};
