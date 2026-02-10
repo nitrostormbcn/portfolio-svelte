@@ -1,12 +1,12 @@
 <script lang="ts">
-	import RocketLogo from '../icons/RocketLogo.svelte';
 	import NavLink from './NavLink.svelte';
 	import CatHover from './CatHover.svelte';
+	import logo from '$lib/assets/logo-resized.png';
 </script>
 
 <nav class="navbar mx-0 my-auto w-4xl self-center">
 	<a href="/">
-		<RocketLogo />
+		<img src={logo} alt="Logo" class="w-15" />
 	</a>
 	<div class="navbar-links">
 		<NavLink href="/" text="Main" />
