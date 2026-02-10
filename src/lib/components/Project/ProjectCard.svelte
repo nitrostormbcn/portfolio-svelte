@@ -6,22 +6,21 @@
 	let { project }: Props = $props();
 </script>
 
-<article>
-	<img src="https://placehold.co/400x400" alt="Project thumbnail" />
-	<p class="symbol">{'=>'}</p>
-	<div>
-		<h2>{project.title}</h2>
-		<p class="description">{project.description}</p>
-	</div>
-	<DotTrail logo={project.logo}></DotTrail>
-</article>
+<a href='code/{project.pathdir}'>
+	<article>
+		{#await import(`$lib/assets/${project.pathdir}/hero.png`) then { default: src }}
+			<img {src} alt="Project thumbnail" class="h-24 w-24 rounded-full border-4 object-contain" />
+		{/await}
+		<p class="symbol">{'=>'}</p>
+		<div>
+			<h2>{project.title}</h2>
+			<p class="description">{project.description}</p>
+		</div>
+		<DotTrail logo={project.logo}></DotTrail>
+	</article>
+</a>
 
 <style>
-	img {
-		width: 90px;
-		border-radius: 48px;
-		border: 3px solid;
-	}
 	.symbol {
 		font-size: 3em;
 		font-weight: 400;

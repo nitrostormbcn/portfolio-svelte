@@ -3,6 +3,7 @@ interface PauProject {
 	title: String;
 	description: String;
 	logo: Logo;
+	pathdir: string;
 }
 
 interface PauArt {
