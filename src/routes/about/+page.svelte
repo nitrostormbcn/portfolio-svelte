@@ -1,5 +1,5 @@
 <script>
-	import lnLogo from '$lib/assets/InBug-Black.png';
+	import lnLogo from '$lib/assets/InBug-Black-150.png';
 </script>
 
 <div class="mt-10 flex w-4xl flex-col items-stretch">
@@ -10,7 +10,7 @@
 	<p class="my-1 text-justify text-2xl">Industrial Engineer turned Software Developer</p>
 	<p class="self-center">
 		<a class="m-2" href="https://www.linkedin.com/in/martinezjimenezpau/" target="”_blank”"
-			><img class="w-10" src={lnLogo} alt="" /></a
+			><img class="h-10" src={lnLogo} alt="" /></a
 		>
 	</p>
 	<p class="my-1 text-justify text-2xl">Also started painting as a hobby🖌️</p>

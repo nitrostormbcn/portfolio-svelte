@@ -6,9 +6,11 @@
 	let { project }: Props = $props();
 </script>
 
-<a href='code/{project.pathdir}'>
+<a href="code/{project.pathdir}">
 	<article>
-		{#await import(`$lib/assets/${project.pathdir}/hero.png`) then { default: src }}
+		{#await import(`$lib/assets/${project.pathdir}/hero.png`)}
+			<div class="h-24 w-24 rounded-full border-4 object-contain"></div>
+		{:then { default: src }}
 			<img {src} alt="Project thumbnail" class="h-24 w-24 rounded-full border-4 object-contain" />
 		{/await}
 		<p class="symbol">{'=>'}</p>
