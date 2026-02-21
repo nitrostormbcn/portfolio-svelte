@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { catObject } from '$lib/data.svelte';
 	import { onMount } from 'svelte';
+	import cat1 from '$lib/assets/Cat1.png';
 
 	let card: any = $state();
 	let { isDragging = $bindable() } = $props();
@@ -9,7 +10,7 @@
 
 	onMount(() => {
 		if (catObject.chopperCatFound) {
-			card.style.left = '120px';
+			card.style.left = '125px';
 		}
 	});
 
@@ -27,8 +28,8 @@
 		if (isDragging && card && card.style) {
 			let offset = event.clientX - x;
 			let xf = x0 + offset;
-			if (xf <= 120) {
-				xf = 120;
+			if (xf <= 125) {
+				xf = 125;
 				catFound();
 			}
 			if (xf >= 220) {
@@ -52,10 +53,10 @@
 <div
 	bind:this={card}
 	onmousedown={starDrag}
-	class="unselectable absolute h-30 w-30 content-center rounded-md bg-gray-300 text-center"
+	class="unselectable absolute h-30 w-30 content-center rounded-md text-center"
 	style="top: 90px; left: 220px;"
 >
-	Hola
+	<img src={cat1} alt="Cat number 1" class="unselectable" draggable="false" />
 </div>
 
 <svelte:window onmouseup={endDrag} onmousemove={onDrag} />
