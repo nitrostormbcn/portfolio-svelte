@@ -1,73 +1,19 @@
 <script lang="ts">
-	const DEFAULT = '🌩️';
-	const mixedDirs = new Map<string, string>([
-		['⬅️⬆️', '↖️'],
-		['⬆️⬅️', '↖️'],
-		['⬅️⬇️', '↙️'],
-		['⬇️⬅️', '↙️'],
-		['⬇️➡️', '↘️'],
-		['➡️⬇️', '↘️'],
-		['⬆️➡️', '↗️'],
-		['➡️⬆️', '↗️']
-	]);
-	const directions = new Map<string, string>([
-		['w', '⬆️'],
-		['s', '⬇️'],
-		['a', '⬅️'],
-		['d', '➡️'],
-		['u', '🤜🏻'],
-		['i', '🤜🏽'],
-		['o', '🤜🏿'],
-		['j', '🦶🏻'],
-		['k', '🦶🏽'],
-		['l', '🦶🏿']
-	]);
+	import { FighterInput, DEFAULT } from '$lib/fighterInputs.svelte';
 	let displayDir: string = $state(DEFAULT);
-	let currentDir: string = $state(DEFAULT);
-	let lastDir: string = $state(DEFAULT);
-	let timeout: number;
-
-	function resetTimeout() {
-		if (timeout) {
-			clearTimeout(timeout);
-		}
-		timeout = setTimeout(() => {
-			currentDir = DEFAULT;
-			displayDir = DEFAULT;
-		}, 500);
-	}
+	let fighterInputs = new FighterInput();
 
 	function handleKeyStroke(event: KeyboardEvent) {
-		const temp = directions.get(event.key);
-		if (temp === undefined) {
+		if (event.repeat) {
 			return;
 		}
-		if (timeout) {
-			clearTimeout(timeout);
-		}
-		lastDir = currentDir;
-		currentDir = temp;
-
-		const chord = currentDir.concat(lastDir);
-		const mixedDir = mixedDirs.get(chord);
-
-		if (mixedDir === undefined) {
-			displayDir = currentDir;
-		} else {
-			displayDir = mixedDir;
-		}
+		fighterInputs.push(event.key);
+		displayDir = fighterInputs.printEmoji();
 	}
 
 	function releaseKeystroke(event: KeyboardEvent) {
-		let temp = directions.get(event.key);
-		if (temp === undefined) {
-			return;
-		}
-		if (lastDir === temp) {
-			displayDir = currentDir;
-		}
-		lastDir = DEFAULT;
-		resetTimeout();
+		fighterInputs.decayElement(event.key);
+		displayDir = fighterInputs.printEmoji();
 	}
 </script>
 
