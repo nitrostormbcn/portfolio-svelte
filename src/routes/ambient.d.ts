@@ -13,5 +13,6 @@ interface PauArt {
 
 type CatObject = {
 	chopperCatFound: boolean;
+	hadoukenCatFound: boolean;
 	total: number;
 };

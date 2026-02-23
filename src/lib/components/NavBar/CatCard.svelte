@@ -45,8 +45,6 @@
 			catObject.total += 1;
 		}
 	}
-
-	$inspect(catObject);
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
