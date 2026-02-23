@@ -1,7 +1,16 @@
 <script lang="ts">
 	import { FighterInput, DEFAULT } from '$lib/fighterInputs.svelte';
 	let displayDir: string = $state(DEFAULT);
-	let fighterInputs = new FighterInput();
+	let fighterInputs = new FighterInput(
+		[
+			['2', '3', '6', 'u'],
+			['2', '3', '6', 'i'],
+			['2', '3', '6', 'o']
+		],
+		(triggeredCommand) => {
+			console.log(triggeredCommand[3]);
+		}
+	);
 
 	function handleKeyStroke(event: KeyboardEvent) {
 		if (event.repeat) {
