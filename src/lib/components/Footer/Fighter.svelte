@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { catObject } from '$lib/data.svelte';
 	import { FighterInput, DEFAULT } from '$lib/fighterInputs.svelte';
+	let { ontrigger } = $props();
 	let displayDir: string = $state(DEFAULT);
 	let fighterInputs = new FighterInput(
 		[
@@ -9,11 +10,11 @@
 			['2', '3', '6', 'o']
 		],
 		(triggeredCommand) => {
-			console.log(triggeredCommand[3]);
 			if (!catObject.hadoukenCatFound) {
 				catObject.hadoukenCatFound = true;
 				catObject.total += 1;
 			}
+			ontrigger(triggeredCommand[3]);
 		}
 	);
 
