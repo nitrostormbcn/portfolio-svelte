@@ -2,6 +2,7 @@
 	import NavLink from './NavLink.svelte';
 	import CatHover from './CatHover.svelte';
 	import logo from '$lib/assets/logo-resized.png';
+	import Infinity from './Infinity.svelte';
 </script>
 
 <nav class="navbar mx-0 my-auto w-4xl self-center">
@@ -16,6 +17,8 @@
 	</div>
 	<CatHover></CatHover>
 </nav>
+
+<Infinity></Infinity>
 
 <style>
 	.navbar {
