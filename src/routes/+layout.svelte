@@ -7,7 +7,7 @@
 	let { children } = $props();
 </script>
 
-<div class="page justify-center">
+<div class="page relative justify-center">
 	<NavBar />
 	{@render children()}
 	<Footer />

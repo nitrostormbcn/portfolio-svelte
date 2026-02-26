@@ -13,8 +13,7 @@
 			description: 'Scanner and search for Pokemon cards',
 			logo: 'Android',
 			pathdir: 'rotomdex'
-		},
-		{ title: 'Article 3', description: 'Description 3', logo: 'Other', pathdir: 'portfolio' }
+		}
 	];
 </script>
 
