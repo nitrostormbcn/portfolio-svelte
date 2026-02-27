@@ -10,7 +10,7 @@
 
 	onMount(() => {
 		if (catObject.chopperCatFound) {
-			card.style.left = '125px';
+			card.style.left = '-5px';
 		}
 	});
 
@@ -28,12 +28,12 @@
 		if (isDragging && card && card.style) {
 			let offset = event.clientX - x;
 			let xf = x0 + offset;
-			if (xf <= 125) {
-				xf = 125;
+			if (xf >= -5) {
+				xf = -5;
 				catFound();
 			}
-			if (xf >= 220) {
-				xf = 220;
+			if (xf <= -100) {
+				xf = -100;
 			}
 			card.style.left = xf.toString() + 'px';
 		}
@@ -53,7 +53,7 @@
 	onmousedown={startDrag}
 	onpointerdown={startDrag}
 	class="unselectable absolute h-30 w-30 touch-none content-center rounded-md text-center"
-	style="top: 90px; left: 220px;"
+	style="top: 90px; left: -100px;"
 >
 	<img src={cat1} alt="Cat number 1" class="unselectable" draggable="false" />
 </div>
