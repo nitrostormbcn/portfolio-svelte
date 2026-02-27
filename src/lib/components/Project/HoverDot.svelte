@@ -1,4 +1,4 @@
-<p class="dot">·</p>
+<p class="dot hidden lg:block">·</p>
 
 <style>
 	.dot {

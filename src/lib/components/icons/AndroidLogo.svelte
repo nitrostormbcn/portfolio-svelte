@@ -1,12 +1,11 @@
 <script lang="ts">
-	import { page } from '$app/state';
 	interface Props {
 		size?: string;
 	}
 	let { size }: Props = $props();
 </script>
 
-<svg xmlns="http://www.w3.org/2000/svg" style="width: {size}; height: {size}" width="152" height="89" viewBox="0 0 152 89" fill="none">
+<svg class="hidden lg:inline" xmlns="http://www.w3.org/2000/svg" style="width: {size}; height: {size}" width="152" height="89" viewBox="0 0 152 89" fill="none">
 	<g clip-path="url(#a)">
 		<path
 			fill="#34A853"

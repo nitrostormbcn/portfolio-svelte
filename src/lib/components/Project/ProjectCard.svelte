@@ -9,14 +9,19 @@
 <a href="code/{project.pathdir}">
 	<article>
 		{#await import(`$lib/assets/${project.pathdir}/hero.png`)}
-			<div class="h-24 w-24 rounded-full border-4 object-contain"></div>
+			<div class="h-12 w-12 rounded-full border-4 object-contain lg:h-24 lg:w-24"></div>
 		{:then { default: src }}
-			<img {src} alt="Project thumbnail" class="h-24 w-24 rounded-full border-4 object-contain" />
+			<img
+				{src}
+				alt="Project thumbnail"
+				class="h-12 w-12 rounded-full border-4 object-contain lg:h-24 lg:w-24"
+			/>
 		{/await}
-		<p class="symbol">{'=>'}</p>
+		<p class="symbol mx-5 hidden lg:block">{'=>'}</p>
+		<p class="symbol block mx-1 lg:hidden">{':'}</p>
 		<div>
 			<h2>{project.title}</h2>
-			<p class="description">{project.description}</p>
+			<p class="description w-55 lg:w-3xs">{project.description}</p>
 		</div>
 		<DotTrail logo={project.logo}></DotTrail>
 	</article>
@@ -26,8 +31,6 @@
 	.symbol {
 		font-size: 3em;
 		font-weight: 400;
-		margin-left: 20px;
-		margin-right: 20px;
 		margin-top: 0px;
 		margin-bottom: 0px;
 	}
@@ -41,8 +44,7 @@
 		font-weight: 600;
 		margin-top: 0px;
 		margin-bottom: 0px;
-		width: 250px;
-		text-align: justify;
+		text-align:left;
 	}
 	article {
 		padding: 30px 0px;
