@@ -2,8 +2,8 @@
 	import lnLogo from '$lib/assets/InBug-Black-150.png';
 </script>
 
-<div class="mt-10 flex w-4xl flex-col items-stretch">
-	<h1 class="mb-10 text-7xl mt-10">
+<div class="text-container mt-10 flex flex-col items-stretch">
+	<h1 class="mt-10 mb-10 text-7xl">
 		<span style="color: var(--color-primary);">Happy</span> to meet!
 	</h1>
 	<p class="my-1 text-justify text-2xl">I'm Pau, QA Engineer @ Sanoma</p>
@@ -23,5 +23,4 @@
 		they use all their available tricks to remain out of sight, away from you.
 	</p>
 	<p class="my-1 text-justify text-2xl">Good luck :)</p>
-
 </div>

@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<div class="mt-10 mb-auto flex w-4xl flex-col items-stretch">
+<div class="text-container mt-10 mb-auto flex flex-col items-stretch">
 	<h1 class="mt-10 mb-10 text-7xl">
 		My <span style="color: var(--color-primary);">Portfolio</span>
 	</h1>

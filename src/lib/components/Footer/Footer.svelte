@@ -33,7 +33,7 @@
 	}
 </script>
 
-<footer class="mx-0 my-auto w-4xl">
+<footer class="std-container mx-0 my-auto">
 	Made by Nitrostorm <Fighter ontrigger={onTrigger} /> with Svelte <SvelteLogo></SvelteLogo>
 </footer>
 

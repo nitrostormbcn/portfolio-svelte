@@ -17,7 +17,7 @@
 	];
 </script>
 
-<div class="content mx-0 my-auto w-4xl">
+<div class="content text-container mx-0 my-auto">
 	<h1 class="justi mt-15 mb-5 text-5xl">Code vault 💾</h1>
 	<div class="projects">
 		{#each projects as project}

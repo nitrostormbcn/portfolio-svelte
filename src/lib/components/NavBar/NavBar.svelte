@@ -5,7 +5,7 @@
 	import Infinity from './Infinity.svelte';
 </script>
 
-<nav class="navbar mx-0 my-auto w-4xl self-center">
+<nav class="navbar std-container mx-0 my-auto self-center">
 	<a href="/">
 		<img src={logo} alt="Logo" class="w-15" />
 	</a>
