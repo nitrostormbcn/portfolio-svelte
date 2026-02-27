@@ -1,9 +1,9 @@
 @import 'tailwindcss';
 
 .text-container {
-	@apply w-sm p-7 lg:w-4xl lg:p-0;
+	@apply w-full p-7 lg:w-4xl lg:p-0;
 }
 
 .std-container {
-    @apply w-sm lg:w-4xl
+	@apply w-full lg:w-4xl;
 }
