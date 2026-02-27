@@ -19,22 +19,28 @@
 		isAway = true;
 	}
 
-	function dismiss(e: MouseEvent) {
+	function dismiss(e: PointerEvent) {
 		if (catHover && isAway) {
 			catHover = false;
+		}
+		if (e.pointerType === 'touch' && catHover && isAway) {
+			catHover = false;
+		}
+		if (e.pointerType === 'touch' && !isAway) {
+			isAway = true;
 		}
 	}
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class="relative h-16 w-16" onmouseenter={mouseenter}>
+<div class="relative h-16 w-16" onpointerenter={mouseenter}>
 	<div class="absolute top-0 left-0 z-20 h-full w-full">
 		<p class="flex h-full items-center text-center">🐈 {catObject.total}/7</p>
 	</div>
 	{#if catHover}
 		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<div
-			class="absolute -top-1 -left-22 z-10 h-60 w-60 overflow-clip rounded-4xl border-2 border-(--color-primary) bg-gray-100 drop-shadow-md"
+			class="absolute -top-1 -left-40 z-10 h-60 w-60 overflow-clip rounded-4xl border-2 border-(--color-primary) bg-gray-100 drop-shadow-md lg:-left-22"
 			onmouseleave={mouseleave}
 		>
 			<div class="flex flex-col content-center pt-25">
@@ -46,4 +52,4 @@
 		</div>
 	{/if}
 </div>
-<svelte:window onmousedown={dismiss} />
+<svelte:window onpointerdown={dismiss} />

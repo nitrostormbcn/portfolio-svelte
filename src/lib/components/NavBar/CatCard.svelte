@@ -14,7 +14,7 @@
 		}
 	});
 
-	function starDrag(event: MouseEvent) {
+	function startDrag(event: MouseEvent) {
 		isDragging = true;
 		x = event.clientX;
 		x0 = parseInt(card.style.left.replace('px', ''));
@@ -50,14 +50,15 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
 	bind:this={card}
-	onmousedown={starDrag}
-	class="unselectable absolute h-30 w-30 content-center rounded-md text-center"
+	onmousedown={startDrag}
+	onpointerdown={startDrag}
+	class="unselectable absolute h-30 w-30 touch-none content-center rounded-md text-center"
 	style="top: 90px; left: 220px;"
 >
 	<img src={cat1} alt="Cat number 1" class="unselectable" draggable="false" />
 </div>
 
-<svelte:window onmouseup={endDrag} onmousemove={onDrag} />
+<svelte:window onpointermove={onDrag} onpointerup={endDrag} />
 
 <style>
 	.unselectable {
