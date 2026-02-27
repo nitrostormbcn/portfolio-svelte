@@ -9,7 +9,7 @@
 	<a href="/">
 		<img src={logo} alt="Logo" class="w-15" />
 	</a>
-	<div class="navbar-links">
+	<div class="flex flex-col lg:flex-row">
 		<NavLink href="/" text="Main" />
 		<NavLink href="/code" text="Code" />
 		<NavLink href="/art" text="Art" />
