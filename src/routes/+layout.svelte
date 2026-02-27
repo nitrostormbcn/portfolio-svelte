@@ -7,7 +7,7 @@
 	let { children } = $props();
 </script>
 
-<div class="page relative justify-center">
+<div class="page relative justify-center ">
 	<NavBar />
 	{@render children()}
 	<Footer />
@@ -31,5 +31,7 @@
 		margin: 0;
 		display: grid;
 		grid-template-rows: auto 1fr auto;
+		grid-template-columns: 100%;
+		justify-items: center;
 	}
 </style>

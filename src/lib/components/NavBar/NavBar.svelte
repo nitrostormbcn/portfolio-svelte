@@ -1,8 +1,8 @@
 <script lang="ts">
 	import NavLink from './NavLink.svelte';
-	import CatHover from './CatHover.svelte';
+	import CatHover from './CatHover/CatHover.svelte';
 	import logo from '$lib/assets/logo-resized.png';
-	import Infinity from './Infinity.svelte';
+	import Infinity from './Infinity/Infinity.svelte';
 </script>
 
 <nav class="navbar std-container mx-0 my-auto self-center">
