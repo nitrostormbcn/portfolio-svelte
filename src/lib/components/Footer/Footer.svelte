@@ -38,7 +38,7 @@
 </footer>
 
 {#if visible}
-	<div class="absolute bottom-0" transition:fly={{ x: -300, duration: 200 }}>
+	<div class="absolute bottom-0 left-0" transition:fly={{ x: -300, duration: 200 }}>
 		<img src={cat2} alt="Cat 2" />
 	</div>
 {/if}
@@ -48,7 +48,7 @@
 		alt="Cat fireball 1"
 		class="absolute bottom-10 left-25"
 		in:blur={{ duration: 50, delay: 150 }}
-		out:fly={{ x: 2500, duration: 1000, easing: linear, opacity: 100 }}
+		out:fly={{ x: 1500, duration: 1000, easing: linear }}
 	/>
 {/if}
 
