@@ -6,7 +6,7 @@
 	let { project }: Props = $props();
 </script>
 
-<a href="code/{project.pathdir}">
+<a href="code/{project.pathdir}" class="justify-center">
 	{#await import(`$lib/assets/${project.pathdir}/hero.png`)}
 		<div class="h-12 w-12 rounded-full border-4 object-contain lg:h-24 lg:w-24"></div>
 	{:then { default: src }}
