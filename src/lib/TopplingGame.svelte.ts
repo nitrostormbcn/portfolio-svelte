@@ -3,7 +3,7 @@ import { mount } from 'svelte';
 
 export class TopplingGame {
 	currentLevel: number = 0;
-	levelDifficulty = [10, 2, 3, 5, 10];
+	levelDifficulty = [1, 2, 3, 5, 10];
 	content: HTMLDivElement;
 	constructor(content: HTMLDivElement) {
 		this.content = content;
@@ -15,65 +15,66 @@ export class TopplingGame {
 	}
 
 	private setupLevel() {
-		for (let index = 0; index < this.levelDifficulty[this.currentLevel]; index++) {
-			console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
-
-			const direction = TopplingGame.pickRandomLetter(this.content);
-			this.injectHTML(direction);
-		}
+		this.splitTextContentIn(this.levelDifficulty[this.currentLevel]);
 	}
 
-	private static pickRandomLetter(content: Element): number[] {
-		if (content.children.length === 0) {
-			let rand = TopplingGame.randomIntRange(content.textContent.length);
-			while (content.textContent[rand] === ' ') {
-				rand = TopplingGame.randomIntRange(content.textContent.length);
+	private splitTextContentIn(sections: number) {
+		const paragraphs = Array.from(this.content.children);
+		const totalLetters = paragraphs.reduce(
+			(previous, current) => previous + current.textContent.length,
+			0
+		);
+		let splits = Array.from({ length: sections }, () => TopplingGame.randomIntRange(totalLetters));
+		while (new Set(splits).size !== splits.length) {
+			splits = Array.from({ length: sections }, () => TopplingGame.randomIntRange(totalLetters));
+		}
+		splits.sort((a, b) => a - b);
+
+		const relativeSplits: number[][] = Array.from({ length: paragraphs.length }, () => []);
+
+		for (let split of splits) {
+			for (let index = 0; index < paragraphs.length; index++) {
+				const paragraph = paragraphs[index];
+				const elementLength = paragraph.textContent.length;
+				if (split <= elementLength) {
+					relativeSplits[index].push(split);
+					break;
+				}
+				split -= paragraph.textContent.length;
 			}
-			return Array.of(rand);
 		}
 
-		const ordered = Array.from(content.children);
-		const shuffled = [...ordered].sort(() => Math.random() - 0.5);
-		console.log(shuffled);
-		for (let index = 0; index < shuffled.length; index++) {
-			const elem = shuffled[index];
-			if (elem.tagName.toLowerCase() === 'div' || elem.textContent === '' || elem.textContent === ' ') {
+		for (let index = 0; index < relativeSplits.length; index++) {
+			const elementSplits = relativeSplits[index];
+			if (elementSplits.length === 0) {
 				continue;
 			}
-			const rand = ordered.findIndex((value) => elem === value);
-			return Array.of(rand).concat(TopplingGame.pickRandomLetter(elem));
+			const paragraph = paragraphs[index];
+			const text = paragraph.textContent;
+			paragraph.textContent = '';
+			const e = document.createElement('span');
+			e.textContent = text.slice(0, elementSplits[0]);
+			paragraph.appendChild(e);
+			for (let index = 0; index < elementSplits.length; index++) {
+				let split = elementSplits[index];
+
+				if (text.charAt(split) === ' ') {
+					const t1 = text.charAt(split - 1);
+					split = t1 !== '' ? split - 1 : split + 1;
+				}
+
+				const e = document.createElement('span');
+				e.textContent = text.slice(split + 1, elementSplits[index + 1]);
+				mount(ToppleButton, {
+					target: paragraph,
+					props: { letter: text.charAt(split) !== ' ' ? text.charAt(split) : '@' }
+				});
+				paragraph.appendChild(e);
+			}
 		}
-		throw new Error('Wtf happened here');
 	}
 
 	private static randomIntRange(max: number) {
 		return Math.floor(Math.random() * max);
-	}
-
-	private injectHTML(direction: number[]): void {
-		function injectRecursive(content: Element, direction: number[]): void {
-			if (direction.length === 1) {
-				content.appendChild;
-				const text = content.textContent;
-				const e1 = document.createElement('span');
-				e1.textContent = text.slice(0, direction[0]);
-				const e2 = document.createElement('span');
-				e2.textContent = text.slice(direction[0] + 1, text.length);
-				content.textContent = '';
-				content.appendChild(e1);
-				const injection = mount(ToppleButton, {
-					target: content,
-					props: { letter: text.charAt(direction[0]) }
-				});
-				content.appendChild(e2);
-				return;
-			}
-			const e = content.children.item(direction[0]);
-			if (!e) {
-				throw new Error('Unexpected');
-			}
-			return injectRecursive(e, direction.slice(1, direction.length));
-		}
-		return injectRecursive(this.content, direction);
 	}
 }

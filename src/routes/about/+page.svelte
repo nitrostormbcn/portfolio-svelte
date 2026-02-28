@@ -37,7 +37,7 @@
 		<p class="my-1 text-justify text-xl lg:text-3xl">
 			This is a portfolio summary of some of my works BUT also a little game...
 		</p>
-		<p class="my-10 text-2xl lg:text-4xl">The game</p>
+		<h2 class="my-10 text-2xl lg:text-5xl">The game</h2>
 		<p class="my-1 text-justify text-xl lg:text-3xl">
 			I've hidden 7 cats in this website, and the challenge is to find them. They are very sneaky,
 			so they use all their available tricks to remain out of sight, away from you.
