@@ -3,7 +3,7 @@
 	import { afterNavigate } from '$app/navigation';
 	import { blur } from 'svelte/transition';
 	import cat3 from '$lib/assets/Cat3.png';
-	import { LinearStateMachine } from '$lib/linearStateMachine.svelte';
+	import { LinearStateMachine } from '$lib/LinearStateMachine.svelte';
 	import { catObject } from '$lib/data.svelte';
 	import Dot from './Dot.svelte';
 

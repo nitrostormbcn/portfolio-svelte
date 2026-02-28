@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { catObject } from '$lib/data.svelte';
-	import { FighterInput, DEFAULT } from '$lib/fighterInputs.svelte';
+	import { FighterInput, DEFAULT } from '$lib/FighterInput.svelte';
 	let { ontrigger } = $props();
 	let displayDir: string = $state(DEFAULT);
 	let fighterInputs = new FighterInput(
