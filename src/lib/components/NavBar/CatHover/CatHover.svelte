@@ -46,7 +46,7 @@
 			<div class="flex flex-col content-center pt-25">
 				<p class="text-center">Find the</p>
 				<p class="text-center">hidden cats</p>
-				<p class="text-center">Hint =></p>
+				<p class="text-center">{'<-'} Hint</p>
 			</div>
 			<CatCard bind:isDragging></CatCard>
 		</div>
