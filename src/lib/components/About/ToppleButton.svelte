@@ -1,11 +1,15 @@
 <script lang="ts">
 	interface Props {
 		letter: string;
+		onTap(): void;
 	}
-	let { letter }: Props = $props();
+	let { letter, onTap }: Props = $props();
 	let element: HTMLSpanElement;
 
 	function tap() {
+		if (element.classList.contains('rotate-90')) {
+			onTap();
+		}
 		element.classList.remove('rotate-90', 'mx-2');
 	}
 </script>

@@ -3,17 +3,30 @@ import { mount } from 'svelte';
 
 export class TopplingGame {
 	currentLevel: number = 0;
-	levelDifficulty = [10, 2, 3, 5, 10];
 	currentLevelProgress: number = 0;
+	levelDifficulty = [1, 2, 3, 5, 10];
 	paragraphs: Element[];
-	initialParagraphs: Element[];
+	initialTexts: string[];
 	constructor(content: HTMLDivElement) {
 		this.paragraphs = Array.from(content.children);
-		this.initialParagraphs = [...this.paragraphs];
+		this.initialTexts = this.paragraphs.map((e) => e.textContent);
 	}
 
 	startGame() {
 		console.log('Start game');
+		this.currentLevelProgress = 0;
+		this.currentLevel = 0;
+		this.setupLevel();
+	}
+
+	newLevel() {
+		console.log('New level');
+		this.paragraphs.map((e, i) => {
+			e.textContent = this.initialTexts[i];
+			return e;
+		});
+		this.currentLevelProgress = 0;
+		this.currentLevel += 1;
 		this.setupLevel();
 	}
 
@@ -41,7 +54,12 @@ export class TopplingGame {
 				e.textContent = text.slice(split + 1, elementSplits[index + 1]);
 				mount(ToppleButton, {
 					target: paragraph,
-					props: { letter: text.charAt(split) !== ' ' ? text.charAt(split) : '@' }
+					props: {
+						letter: text.charAt(split),
+						onTap: () => {
+							this.putBackUp();
+						}
+					}
 				});
 				paragraph.appendChild(e);
 			}
@@ -77,6 +95,13 @@ export class TopplingGame {
 		}
 		return relativeSplits;
 	}
+
+	private putBackUp() {
+		this.currentLevelProgress += 1;
+		if (this.currentLevelProgress >= this.levelDifficulty[this.currentLevel]) {
+			this.newLevel();
+		}
+	}
 }
 
 class Utils {
@@ -87,7 +112,6 @@ class Utils {
 	public static slideSplitOnSpaces(split: number, text: string) {
 		if (text.charAt(split) === ' ') {
 			const t1 = text.charAt(split - 1);
-			console.log(split);
 			return t1 !== '' ? split - 1 : split + 1;
 		}
 		return split;
