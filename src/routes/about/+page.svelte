@@ -1,5 +1,20 @@
-<script>
+<script lang="ts">
 	import lnLogo from '$lib/assets/InBug-Black-150.png';
+	import { TopplingGame } from '$lib/TopplingGame.svelte';
+	import { onMount } from 'svelte';
+	let content: HTMLDivElement;
+	let game: TopplingGame;
+
+	onMount(() => {
+		game = new TopplingGame(content);
+		setTimeout(() => {
+			game.startGame();
+		}, 500);
+	});
+
+	function tap() {
+		console.log('Tapped');
+	}
 </script>
 
 <div class="text-container mt-10 flex flex-col items-stretch">
@@ -13,14 +28,16 @@
 			><img class="h-10" src={lnLogo} alt="" /></a
 		>
 	</p>
-	<p class="my-1 text-justify text-xl lg:text-3xl">Also started painting as a hobby🖌️</p>
+</div>
+<div class="text-container mt-10 flex flex-col items-stretch" bind:this={content}>
+	<p class="my-1 text-justify text-xl lg:text-3xl">Also started painting as a hobby</p>
 	<p class="my-1 text-justify text-xl lg:text-3xl">
 		This is a portfolio summary of some of my works BUT also a little game...
 	</p>
-	<h2 class="my-10 text-2xl lg:text-4xl">The game 🐈</h2>
+	<h2 class="my-10 text-2xl lg:text-4xl">The game</h2>
 	<p class="my-1 text-justify text-xl lg:text-3xl">
 		I've hidden 7 cats in this website, and the challenge is to find them. They are very sneaky, so
 		they use all their available tricks to remain out of sight, away from you.
 	</p>
-	<p class="my-1 text-justify text-xl lg:text-3xl">Good luck :)</p>
+	<p class="my-1 text-justify text-xl lg:text-3xl">Good luck :{')'}</p>
 </div>
