@@ -11,6 +11,6 @@
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class="mx-2 inline-block rotate-90" onpointerup={tap} bind:this={element}>
+<div class="mx-2 inline-block rotate-90 bg-blue-500" onpointerup={tap} bind:this={element}>
 	{letter}
 </div>

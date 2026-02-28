@@ -3,7 +3,7 @@ import { mount } from 'svelte';
 
 export class TopplingGame {
 	currentLevel: number = 0;
-	levelDifficulty = [1, 2, 3, 5, 10];
+	levelDifficulty = [10, 2, 3, 5, 10];
 	content: HTMLDivElement;
 	constructor(content: HTMLDivElement) {
 		this.content = content;
@@ -16,8 +16,9 @@ export class TopplingGame {
 
 	private setupLevel() {
 		for (let index = 0; index < this.levelDifficulty[this.currentLevel]; index++) {
+			console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+
 			const direction = TopplingGame.pickRandomLetter(this.content);
-			console.log(direction);
 			this.injectHTML(direction);
 		}
 	}
@@ -30,12 +31,19 @@ export class TopplingGame {
 			}
 			return Array.of(rand);
 		}
-		const randomIndex = TopplingGame.randomIntRange(content.children.length);
-		const elem = content.children.item(randomIndex);
-		if (!elem) {
-			throw new Error('Unexpeced item is missing');
+
+		const ordered = Array.from(content.children);
+		const shuffled = [...ordered].sort(() => Math.random() - 0.5);
+		console.log(shuffled);
+		for (let index = 0; index < shuffled.length; index++) {
+			const elem = shuffled[index];
+			if (elem.tagName.toLowerCase() === 'div' || elem.textContent === '' || elem.textContent === ' ') {
+				continue;
+			}
+			const rand = ordered.findIndex((value) => elem === value);
+			return Array.of(rand).concat(TopplingGame.pickRandomLetter(elem));
 		}
-		return Array.of(randomIndex).concat(TopplingGame.pickRandomLetter(elem));
+		throw new Error('Wtf happened here');
 	}
 
 	private static randomIntRange(max: number) {
