@@ -7,14 +7,29 @@
 	let element: HTMLSpanElement;
 
 	function tap() {
-		if (element.classList.contains('rotate-90')) {
+		if (element.classList.contains('toppled')) {
 			onTap();
 		}
-		element.classList.remove('rotate-90', 'mx-2');
+		element.classList.remove('toppled', 'mx-2');
+		element.classList.add('straight');
 	}
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class="mx-2 inline-block rotate-90 bg-blue-500" onpointerup={tap} bind:this={element}>
+<div class="toppled mx-2 inline-block" onpointerup={tap} bind:this={element}>
 	{letter}
 </div>
+
+<style>
+	div {
+		transition: all 0.3s ease-in;
+	}
+
+	div.toppled {
+		transform: rotate(90deg);
+	}
+
+	div.straight {
+		transform: rotate(0deg);
+	}
+</style>

@@ -45,22 +45,22 @@ export class TopplingGame {
 			const text = paragraph.textContent;
 			paragraph.textContent = '';
 			const e = document.createElement('span');
-			elementSplits[0] = Utils.slideSplitOnSpaces(elementSplits[0], text);
-			e.textContent = text.slice(0, elementSplits[0]);
+			const split = Utils.slideSplitOnSpaces(elementSplits[0], text);
+			e.textContent = text.slice(0, split);
 			paragraph.appendChild(e);
 			for (let index = 0; index < elementSplits.length; index++) {
 				const split = Utils.slideSplitOnSpaces(elementSplits[index], text);
-				const e = document.createElement('span');
-				e.textContent = text.slice(split + 1, elementSplits[index + 1]);
 				mount(ToppleButton, {
 					target: paragraph,
 					props: {
-						letter: text.charAt(split),
+						letter: text[split],
 						onTap: () => {
 							this.putBackUp();
 						}
 					}
 				});
+				const e = document.createElement('span');
+				e.textContent = text.slice(split + 1, elementSplits[index + 1]);
 				paragraph.appendChild(e);
 			}
 		}
@@ -99,7 +99,9 @@ export class TopplingGame {
 	private putBackUp() {
 		this.currentLevelProgress += 1;
 		if (this.currentLevelProgress >= this.levelDifficulty[this.currentLevel]) {
-			this.newLevel();
+			setTimeout(() => {
+				this.newLevel();
+			}, 1000);
 		}
 	}
 }
@@ -110,8 +112,8 @@ class Utils {
 	}
 
 	public static slideSplitOnSpaces(split: number, text: string) {
-		if (text.charAt(split) === ' ') {
-			const t1 = text.charAt(split - 1);
+		if (text[split] === ' ') {
+			const t1 = text[split - 1];
 			return t1 !== '' ? split - 1 : split + 1;
 		}
 		return split;
