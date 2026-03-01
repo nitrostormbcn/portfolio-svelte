@@ -37,28 +37,26 @@ export class TopplingGame {
 
 		for (let index = 0; index < relativeSplits.length; index++) {
 			const elementSplits = relativeSplits[index];
-			const paragraph = this.paragraphs[index];
 			if (elementSplits.length === 0) continue;
-
+			const paragraph = this.paragraphs[index];
 			const text = paragraph.textContent;
+			const slideSplits = Utils.slideInvalidSplits(elementSplits, text);
 			paragraph.textContent = '';
 			const e = document.createElement('span');
-			const split = Utils.slideSplitOnInvalidChars(elementSplits[0], text);
-			e.textContent = text.slice(0, split);
+			e.textContent = text.slice(0, slideSplits[0]);
 			paragraph.appendChild(e);
-			for (let index = 0; index < elementSplits.length; index++) {
-				const split = Utils.slideSplitOnInvalidChars(elementSplits[index], text);
+			for (let index = 0; index < slideSplits.length; index++) {
 				mount(ToppleButton, {
 					target: paragraph,
 					props: {
-						letter: text[split],
+						letter: text[slideSplits[index]],
 						onTap: () => {
 							this.putBackUp();
 						}
 					}
 				});
 				const e = document.createElement('span');
-				e.textContent = text.slice(split + 1, elementSplits[index + 1]);
+				e.textContent = text.slice(slideSplits[index] + 1, slideSplits[index + 1]);
 				paragraph.appendChild(e);
 			}
 		}
@@ -115,5 +113,17 @@ class Utils {
 			split -= 1;
 		}
 		return split;
+	}
+
+	public static slideInvalidSplits(splits: number[], text: string): number[] {
+		let slideSplits = new Array();
+		for (let index = 0; index < splits.length; index++) {
+			let newSplit = Utils.slideSplitOnInvalidChars(splits[index], text);
+			while (slideSplits.includes(newSplit)) {
+				newSplit--;
+			}
+			slideSplits.push(newSplit);
+		}
+		return slideSplits;
 	}
 }
