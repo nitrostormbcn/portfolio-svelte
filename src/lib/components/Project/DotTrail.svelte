@@ -14,7 +14,7 @@
 {#if logo === 'Android'}
 	<AndroidLogo size="1.5em"></AndroidLogo>
 {:else if logo === 'Svelte'}
-	<SvelteLogo size="1.5em"></SvelteLogo>
+	<SvelteLogo size="1.5em" extraClasses="hidden lg:inline"></SvelteLogo>
 {:else}
 	<HoverDot></HoverDot>
 {/if}

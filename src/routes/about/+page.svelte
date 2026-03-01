@@ -28,7 +28,7 @@
 			>
 		</p>
 	</div>
-	<div class="text-container mt-10 flex flex-col items-stretch" bind:this={content}>
+	<div class="text-container mt-0 flex flex-col items-stretch" bind:this={content}>
 		<p class="my-1 text-justify text-xl lg:text-3xl">Also started painting as a hobby</p>
 		<p class="my-1 text-justify text-xl lg:text-3xl">
 			This is a portfolio summary of some of my works BUT also a little game...
