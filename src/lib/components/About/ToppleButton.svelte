@@ -5,18 +5,22 @@
 	}
 	let { letter, onTap }: Props = $props();
 	let element: HTMLSpanElement;
+	let toppled = $state(true);
 
 	function tap() {
-		if (element.classList.contains('toppled')) {
+		if (toppled) {
 			onTap();
 		}
-		element.classList.remove('toppled', 'mx-2');
-		element.classList.add('straight');
+		toppled = false;
 	}
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class="toppled mx-2 inline-block" onpointerup={tap} bind:this={element}>
+<div
+	class="inline-block {toppled ? 'toppled mx-2' : 'straight'}"
+	onpointerup={tap}
+	bind:this={element}
+>
 	{letter}
 </div>
 

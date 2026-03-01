@@ -37,8 +37,6 @@
 			states.setCurrentState('dismissed');
 		}, 3000);
 	}
-
-	$inspect(states);
 </script>
 
 <div class="absolute flex h-26 w-full items-center justify-center" style="z-index: {zvalue};">
