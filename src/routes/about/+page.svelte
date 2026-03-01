@@ -11,10 +11,6 @@
 			game.startGame();
 		}, 10);
 	});
-
-	function tap() {
-		console.log('Tapped');
-	}
 </script>
 
 <div>

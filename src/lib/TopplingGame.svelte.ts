@@ -13,14 +13,12 @@ export class TopplingGame {
 	}
 
 	startGame() {
-		console.log('Start game');
 		this.currentLevelProgress = 0;
 		this.currentLevel = 0;
 		this.setupLevel();
 	}
 
 	newLevel() {
-		console.log('New level');
 		this.paragraphs.map((e, i) => {
 			e.textContent = this.initialTexts[i];
 			return e;
@@ -45,11 +43,11 @@ export class TopplingGame {
 			const text = paragraph.textContent;
 			paragraph.textContent = '';
 			const e = document.createElement('span');
-			const split = Utils.slideSplitOnSpaces(elementSplits[0], text);
+			const split = Utils.slideSplitOnInvalidChars(elementSplits[0], text);
 			e.textContent = text.slice(0, split);
 			paragraph.appendChild(e);
 			for (let index = 0; index < elementSplits.length; index++) {
-				const split = Utils.slideSplitOnSpaces(elementSplits[index], text);
+				const split = Utils.slideSplitOnInvalidChars(elementSplits[index], text);
 				mount(ToppleButton, {
 					target: paragraph,
 					props: {
@@ -111,10 +109,10 @@ class Utils {
 		return Math.floor(Math.random() * max);
 	}
 
-	public static slideSplitOnSpaces(split: number, text: string) {
-		if (text[split] === ' ') {
-			const t1 = text[split - 1];
-			return t1 !== '' ? split - 1 : split + 1;
+	public static slideSplitOnInvalidChars(split: number, text: string) {
+		const format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~\r\n\t]/;
+		while (format.test(text[split])) {
+			split -= 1;
 		}
 		return split;
 	}
