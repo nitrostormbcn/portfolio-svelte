@@ -115,7 +115,7 @@ class Utils {
 
 	public static slideSplitOnInvalidChars(split: number, text: string) {
 		const format = /[\W|_]/;
-		split = split < text.length ? split : text.length;
+		split = split < text.length ? split : text.length - 1;
 		while (format.test(text[split])) {
 			split -= 1;
 		}

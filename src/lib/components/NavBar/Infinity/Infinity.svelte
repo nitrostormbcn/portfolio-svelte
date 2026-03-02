@@ -39,6 +39,10 @@
 	}
 </script>
 
+<svelte:head>
+	<link rel="preload" as="image" href={cat3} />
+</svelte:head>
+
 <div class="absolute flex h-26 w-full items-center justify-center" style="z-index: {zvalue};">
 	{#if states.getCurrentState() === 'start'}
 		<Dot clazz="bg-blue-700"></Dot>

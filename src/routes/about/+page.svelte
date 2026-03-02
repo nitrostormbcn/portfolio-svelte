@@ -1,6 +1,6 @@
 <script lang="ts">
 	import lnLogo from '$lib/assets/InBug-Black-150.png';
-	import Cat4 from '$lib/components/About/Cat4.svelte';
+	import Cat4 from '$lib/components/About/ShinyPin.svelte';
 	import { TopplingGame } from '$lib/TopplingGame.svelte';
 	import { onMount } from 'svelte';
 	import { catObject } from '$lib/data.svelte';

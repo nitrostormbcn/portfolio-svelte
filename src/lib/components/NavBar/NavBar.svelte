@@ -3,7 +3,12 @@
 	import CatHover from './CatHover/CatHover.svelte';
 	import logo from '$lib/assets/logo-resized.png';
 	import Infinity from './Infinity/Infinity.svelte';
+	import cat1 from '$lib/assets/Cat1.png';
 </script>
+
+<svelte:head>
+	<link rel="preload" as="image" href={cat1} />
+</svelte:head>
 
 <nav class="navbar std-container mx-0 my-auto self-center">
 	<a href="/">

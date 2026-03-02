@@ -33,6 +33,13 @@
 	}
 </script>
 
+<svelte:head>
+	<link rel="preload" as="image" href={cat2} />
+	<link rel="preload" as="image" href={cat21} />
+	<link rel="preload" as="image" href={cat22} />
+	<link rel="preload" as="image" href={cat23} />
+</svelte:head>
+
 <footer class="std-container mx-0 my-auto text-sm lg:text-lg">
 	Made by Nitrostorm <Fighter ontrigger={onTrigger} /> with Svelte <SvelteLogo extraClasses="inline"
 	></SvelteLogo>

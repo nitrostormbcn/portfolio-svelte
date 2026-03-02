@@ -15,8 +15,14 @@
 			}, 5000);
 		}
 	});
-	$inspect(show);
 </script>
+
+<svelte:head>
+	<link rel="preload" as="image" href={cat41} />
+	<link rel="preload" as="image" href={cat42} />
+	<link rel="preload" as="image" href={cat43} />
+	<link rel="preload" as="image" href={cat44} />
+</svelte:head>
 
 {#if enable && show}
 	<div
@@ -95,11 +101,6 @@
 		opacity: 0.5;
 	}
 
-	.animate {
-		animation: movve 3s ease-in-out 1 0.5s;
-		/* filter: blur(5px); */
-	}
-
 	@keyframes gradientMove {
 		0% {
 			background-position: 0px 0px;
@@ -113,7 +114,6 @@
 		75% {
 			background-position: -200px 0px;
 		}
-
 		100% {
 			background-position: -0px 0px;
 		}
