@@ -1,19 +1,25 @@
 <script lang="ts">
 	import lnLogo from '$lib/assets/InBug-Black-150.png';
+	import Cat4 from '$lib/components/About/Cat4.svelte';
 	import { TopplingGame } from '$lib/TopplingGame.svelte';
 	import { onMount } from 'svelte';
+	import { catObject } from '$lib/data.svelte';
+
 	let content: HTMLDivElement;
 	let game: TopplingGame;
+	let found = $state(false);
 
 	onMount(() => {
-		game = new TopplingGame(content);
-		setTimeout(() => {
-			game.startGame();
-		}, 10);
+		game = new TopplingGame(content, () => {
+			found = true;
+			catObject.kpopCatFound = true;
+			catObject.total += 1;
+		});
+		game.startGame();
 	});
 </script>
 
-<div>
+<div class="relative">
 	<div class="text-container mt-10 flex flex-col">
 		<h1 class="mt-10 mb-10 text-4xl lg:text-7xl">
 			<span style="color: var(--color-primary);">Happy</span> to meet!
@@ -40,4 +46,5 @@
 		</p>
 		<p class="my-1 text-justify text-xl lg:text-3xl">Good luck :{')'}</p>
 	</div>
+	<Cat4 show={found}></Cat4>
 </div>

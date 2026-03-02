@@ -7,9 +7,11 @@ export class TopplingGame {
 	levelDifficulty = [1, 2, 3, 5, 10];
 	paragraphs: Element[];
 	initialTexts: string[];
-	constructor(content: HTMLDivElement) {
+	endCallback: () => void;
+	constructor(content: HTMLDivElement, endCallback: () => void) {
 		this.paragraphs = Array.from(content.children);
 		this.initialTexts = this.paragraphs.map((e) => e.textContent);
+		this.endCallback = endCallback;
 	}
 
 	startGame() {
@@ -25,7 +27,11 @@ export class TopplingGame {
 		});
 		this.currentLevelProgress = 0;
 		this.currentLevel += 1;
-		this.setupLevel();
+		if (this.currentLevel < this.levelDifficulty.length) {
+			this.setupLevel();
+		} else {
+			this.endCallback();
+		}
 	}
 
 	private setupLevel() {
@@ -108,10 +114,12 @@ class Utils {
 	}
 
 	public static slideSplitOnInvalidChars(split: number, text: string) {
-		const format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~\r\n\t]/;
+		const format = /[\W|_]/;
+		split = split < text.length ? split : text.length;
 		while (format.test(text[split])) {
 			split -= 1;
 		}
+
 		return split;
 	}
 
