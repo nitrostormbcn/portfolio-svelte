@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ArtCard from '$lib/components/Project/ArtCard.svelte';
+	import ArtCard from '$lib/components/Art/ArtCard.svelte';
 
 	let projects: PauArt[] = [
 		{ title: 'Portfolio', thumbnail: 'Svelte' },

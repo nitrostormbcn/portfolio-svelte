@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ProjectCard from '$lib/components/Project/ProjectCard.svelte';
+	import ProjectCard from '$lib/components/Code/ProjectCard.svelte';
 
 	let projects: PauProject[] = [
 		{
