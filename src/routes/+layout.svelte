@@ -3,15 +3,18 @@
 	import '../app.css';
 	import NavBar from '$lib/components/NavBar/NavBar.svelte';
 	import Footer from '$lib/components/Footer/Footer.svelte';
+	import Overseer from '$lib/components/Overseer/Overseer.svelte';
 
 	let { children } = $props();
 </script>
 
-<div class="page relative justify-center ">
+<div class="page relative justify-center">
 	<NavBar />
 	{@render children()}
 	<Footer />
 </div>
+
+<Overseer></Overseer>
 
 <style>
 	:global(body) {
