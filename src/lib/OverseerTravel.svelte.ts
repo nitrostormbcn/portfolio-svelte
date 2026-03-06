@@ -3,16 +3,25 @@ import { CircularArray } from '$lib/CircularArray.svelte';
 const TOTAL_LEVELS = 4 * 3;
 export const CORRECT_ORDER = new CircularArray(['about', 'art', 'code', 'main']);
 export class OverseerTravel {
+	finished = false;
 	currentLevel = $state(0);
 	lastIndex: number;
-	constructor() {
+	winCallback: () => void;
+	constructor(winCallback: () => void) {
 		this.currentLevel = 0;
 		this.lastIndex = -1;
+		this.winCallback = winCallback;
+		this.finished = false;
 	}
 
 	computeNextStep(currentStep: string) {
+		if (this.finished) return;
+
 		if (this.isNext(CORRECT_ORDER.findIndex(currentStep))) {
 			this.currentLevel += 1;
+			if (this.currentLevel >= TOTAL_LEVELS) {
+				this.winCallback();
+			}
 		} else {
 			this.currentLevel = 0;
 		}
@@ -29,5 +38,11 @@ export class OverseerTravel {
 
 	toString(): string {
 		return `Overseer: CL: ${this.currentLevel}, LI: ${this.lastIndex}`;
+	}
+
+	win() {
+		this.currentLevel = 0;
+		this.lastIndex = -2;
+		this.finished = true;
 	}
 }

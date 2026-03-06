@@ -16,5 +16,6 @@ type CatObject = {
 	hadoukenCatFound: boolean;
 	gojoCatFound: boolean;
 	kpopCatFound: boolean;
+	nightCatFound: boolean
 	total: number;
 };
