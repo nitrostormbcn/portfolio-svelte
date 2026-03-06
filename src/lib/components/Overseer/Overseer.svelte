@@ -5,7 +5,6 @@
 	import { catObject } from '$lib/data.svelte';
 	import cat51 from '$lib/assets/Cat51.png';
 	import cat52 from '$lib/assets/Cat52.png';
-	import cat53 from '$lib/assets/Cat53.png';
 	import { blur } from 'svelte/transition';
 
 	let overseer = new OverseerTravel(winCallback);
@@ -19,18 +18,8 @@
 	});
 
 	let progress = $derived(overseer.getProgress());
-	// let opacity = $derived(sinmap(progress, 7));
-	// let hidden = $derived(progress < 1);
-	let opacity = 1;
-	let hidden = $state(false);
-
-	function toggle() {
-		setTimeout(() => {
-			hidden = !hidden;
-			toggle();
-		}, 2000);
-	}
-	toggle();
+	let opacity = $derived(sinmap(progress, 7));
+	let hidden = $derived(progress < 1);
 
 	function sinmap(x: number, a: number): number {
 		return x + Math.sin(2 * Math.PI * x) / a;
@@ -41,32 +30,29 @@
 		catObject.total += 1;
 		setTimeout(() => {
 			overseer.win();
-		}, 3000);
+		}, 4000);
 	}
 </script>
 
+<svelte:head>
+	<link rel="preload" as="image" href={cat51} />
+	<link rel="preload" as="image" href={cat52} />
+</svelte:head>
+
 <div
 	class="gradient {hidden ? 'pointer-events-none' : ''}
-		   ease absolute top-0 left-0 z-50 h-full w-full overflow-clip"
+		 absolute top-0 left-0 z-50 h-full w-full overflow-clip"
 	style="opacity: {opacity};"
 >
 	{#if !hidden}
 		<div
+			class="ease absolute top-0 left-0 z-50 h-full w-full overflow-clip"
 			transition:blur={{ duration: 1000 }}
-			class="shimmer absolute h-full w-full object-contain"
-		></div>
-		<img
-			transition:blur={{ duration: 1000 }}
-			src={cat51}
-			alt="Cat face"
-			class="absolute h-full w-full object-contain"
-		/>
-		<img
-			transition:blur={{ duration: 1000 }}
-			src={cat52}
-			alt="Cat glow"
-			class="absolute h-full w-full object-contain"
-		/>
+		>
+			<div class="shimmer absolute top-[50%] left-[50%] z-25 h-100 w-300 -translate-1/2"></div>
+			<img src={cat51} alt="Cat face" class="absolute z-30 h-full w-full object-contain" />
+			<img src={cat52} alt="Cat glow" class="absolute z-35 h-full w-full object-contain blur-3xl" />
+		</div>
 	{/if}
 </div>
 
@@ -80,26 +66,26 @@
 	}
 
 	.shimmer {
-		background:
-			/* url($lib/assets/cat53.png), */
-			linear-gradient(60deg, oklch(0.713 0.111 251), oklch(0.335 0.178 263), oklch(0.554 0.186 332));
-		mask-image: url($lib/assets/Cat53.png);
+		background: radial-gradient(
+			oklch(91.72% 0.04103 252.873),
+			oklch(90.662% 0.07503 328.95),
+			oklch(96.554% 0.06236 141.637)
+		);
 		animation: gradientMove 1s linear infinite;
-		mix-blend-mode: screen;
-		opacity: 1;
+		/* mix-blend-mode: screen; */
 	}
 	@keyframes gradientMove {
 		0% {
 			background-position: 0px 0px;
 		}
 		25% {
-			background-position: 0px -200px;
+			background-position: 0px -400px;
 		}
 		50% {
-			background-position: -200px -200px;
+			background-position: -400px -400px;
 		}
 		75% {
-			background-position: -200px 0px;
+			background-position: -400px 0px;
 		}
 		100% {
 			background-position: -0px 0px;
