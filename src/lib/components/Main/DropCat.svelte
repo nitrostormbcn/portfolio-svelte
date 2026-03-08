@@ -11,10 +11,7 @@
 		}
 		const rect = cat.elementReference.getBoundingClientRect();
 		free = true;
-		cat.x = rect.x;
-		cat.y = rect.y;
-		cat.w = rect.width;
-		cat.h = rect.height;
+		cat.setRectangle(rect);
 		startSimulation([cat]);
 	}
 </script>

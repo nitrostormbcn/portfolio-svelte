@@ -15,6 +15,17 @@
 			this.x = x0;
 			this.y = y0;
 		}
+
+		setPositionAndSize(x: number, y: number, w: number, h: number) {
+			this.x = x;
+			this.y = y;
+			this.w = w;
+			this.h = h;
+		}
+
+		setRectangle(rect: DOMRect) {
+			this.setPositionAndSize(rect.x, rect.y, rect.width, rect.height);
+		}
 	}
 
 	export function startSimulation(solids: Solid[]) {
