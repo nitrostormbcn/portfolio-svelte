@@ -50,7 +50,8 @@
 <span
 	bind:this={cat.elementReference}
 	onpointerdown={onDragStart}
-	class=" {free ? 'absolute top-0 left-0' : 'inline'} text-xl lg:text-3xl">😼</span
+	class=" {free ? 'absolute top-0 left-0' : 'inline'} touch-none text-xl select-none lg:text-3xl"
+	>😼</span
 >
 
 <SolidSimulation></SolidSimulation>
