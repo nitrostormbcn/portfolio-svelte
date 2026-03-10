@@ -1,11 +1,9 @@
 <script lang="ts" module>
-	import { draw } from 'svelte/transition';
-
 	const g = 10;
 	let groundY = $state(0);
 	let wallX = $state(0);
-	let t0: number;
-	let isSimulationRunning = false;
+	let endSimulation = true;
+	let t0 = -1;
 
 	export class Solid {
 		x = $state(0);
@@ -62,11 +60,15 @@
 	}
 
 	export function startSimulation(solids: Solid[]) {
-		if (isSimulationRunning) {
-			return;
+		if (endSimulation) {
+			endSimulation = false;
+			nextFrame(solids);
 		}
-		nextFrame(solids);
-		isSimulationRunning = true;
+	}
+
+	export function stopSimulation() {
+		t0 = -1;
+		endSimulation = true;
 	}
 
 	function nextFrame(solids: Solid[]) {
@@ -76,9 +78,14 @@
 	}
 
 	function mainLoop(tf: DOMHighResTimeStamp, solids: Solid[]) {
-		if (!t0) {
+		if (endSimulation) {
+			t0 = -1;
+			return;
+		}
+		if (t0 < 0) {
 			t0 = tf;
 			nextFrame(solids);
+			return;
 		}
 		const dt = (tf - t0) / 1000;
 		solids.forEach((o) => {
@@ -90,7 +97,7 @@
 			o.y = o.y + o.vy * dt;
 			if (o.y + o.h >= groundY && o.vy >= 0) {
 				o.vy = -0.4 * o.vy;
-				o.vx = 0.8 * o.vx
+				o.vx = 0.8 * o.vx;
 				o.y = groundY - o.h;
 			}
 			if (o.x + o.w >= wallX && o.vx >= 0) {

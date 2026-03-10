@@ -1,9 +1,18 @@
 <script lang="ts">
-	import SolidSimulation, { Solid, startSimulation } from './SolidSimulation.svelte';
+	import SolidSimulation, {
+		Solid,
+		startSimulation,
+		stopSimulation
+	} from './SolidSimulation.svelte';
+	import { onNavigate } from '$app/navigation';
 
 	let free = $state(false);
 	let isDragging = $state(false);
 	let cat = new Solid(0, 0);
+
+	onNavigate(() => {
+		stopSimulation();
+	});
 
 	function onDragStop() {
 		if (isDragging) {
