@@ -49,7 +49,9 @@
 			class="ease absolute top-0 left-0 z-50 h-full w-full overflow-clip"
 			transition:blur={{ duration: 1000 }}
 		>
-			<div class="shimmer absolute top-[50%] left-[50%] z-25 h-100 w-300 -translate-1/2"></div>
+			<div
+				class="shimmer absolute top-[50%] left-[50%] z-25 h-50 w-300 -translate-1/2 lg:h-100"
+			></div>
 			<img src={cat51} alt="Cat face" class="absolute z-30 h-full w-full object-contain" />
 			<img src={cat52} alt="Cat glow" class="absolute z-35 h-full w-full object-contain blur-3xl" />
 		</div>
