@@ -1,5 +1,6 @@
 <script lang="ts" module>
 	const g = 10;
+	let rect: HTMLDivElement | undefined = $state();
 	let groundY = $state(0);
 	let wallX = $state(0);
 	let endSimulation = true;
@@ -87,6 +88,8 @@
 			nextFrame(solids);
 			return;
 		}
+		if (!rect) return;
+		let world = rect.getBoundingClientRect();
 		const dt = (tf - t0) / 1000;
 		solids.forEach((o) => {
 			if (o.isKinematic) {
@@ -95,22 +98,22 @@
 			o.vy = o.vy + g + dt;
 			o.x = o.x + o.vx * dt;
 			o.y = o.y + o.vy * dt;
-			if (o.y + o.h >= groundY && o.vy >= 0) {
+			if (o.y + o.h >= world.bottom && o.vy >= 0) {
 				o.vy = -0.4 * o.vy;
 				o.vx = 0.8 * o.vx;
-				o.y = groundY - o.h;
+				o.y = world.bottom - o.h;
 			}
-			if (o.x + o.w >= wallX && o.vx >= 0) {
+			if (o.x + o.w >= world.right && o.vx >= 0) {
 				o.vx = -0.4 * o.vx;
-				o.x = wallX - o.w;
+				o.x = world.right - o.w;
 			}
-			if (o.x <= 0 && o.vx <= 0) {
+			if (o.x <= world.left && o.vx <= 0) {
 				o.vx = -0.8 * o.vx;
-				o.x = 0;
+				o.x = world.left;
 			}
-			if (o.y <= 0 && o.vy <= 0) {
+			if (o.y <= world.top && o.vy <= 0) {
 				o.vy = -0.8 * o.vy;
-				o.y = 0;
+				o.y = world.top;
 			}
 			o.draw();
 		});
@@ -118,5 +121,7 @@
 		nextFrame(solids);
 	}
 </script>
+
+<div class="pointer-events-none fixed inset-5 lg:inset-20" bind:this={rect}></div>
 
 <svelte:window bind:innerHeight={groundY} bind:innerWidth={wallX} />
