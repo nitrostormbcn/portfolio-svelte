@@ -1,8 +1,6 @@
 <script lang="ts" module>
 	const g = 10;
 	let rect: HTMLDivElement | undefined = $state();
-	let groundY = $state(0);
-	let wallX = $state(0);
 	let endSimulation = true;
 	let t0 = -1;
 
@@ -123,5 +121,3 @@
 </script>
 
 <div class="pointer-events-none fixed inset-5 lg:inset-20" bind:this={rect}></div>
-
-<svelte:window bind:innerHeight={groundY} bind:innerWidth={wallX} />
