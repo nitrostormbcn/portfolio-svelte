@@ -1,4 +1,5 @@
 <script lang="ts" module>
+	import Box from './Box.svelte';
 	const g = 10;
 	let rect: HTMLDivElement | undefined = $state();
 	let endSimulation = true;
@@ -120,4 +121,8 @@
 	}
 </script>
 
-<div class="pointer-events-none fixed inset-5 lg:inset-20" bind:this={rect}></div>
+<div class="pointer-events-none fixed inset-5 lg:inset-20" bind:this={rect}>
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<Box></Box>
+</div>

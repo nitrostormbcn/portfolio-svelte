@@ -12,8 +12,6 @@
 	</p>
 </div>
 
-<div class="absolute right-0 bottom-0 m-5 text-3xl">📦</div>
-
 <style>
 	.content {
 		display: flex;
