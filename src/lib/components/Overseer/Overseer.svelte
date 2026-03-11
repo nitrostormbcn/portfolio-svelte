@@ -41,7 +41,7 @@
 
 <div
 	class="gradient {hidden ? 'pointer-events-none' : ''}
-		 absolute top-0 left-0 z-50 h-full w-full overflow-clip"
+		 fixed top-0 left-0 z-50 h-full w-full overflow-clip"
 	style="opacity: {opacity};"
 >
 	{#if !hidden}
