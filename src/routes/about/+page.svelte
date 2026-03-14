@@ -10,6 +10,9 @@
 	let found = $state(false);
 
 	onMount(() => {
+		if (catObject.kpopCatFound) {
+			return;
+		}
 		game = new TopplingGame(content, () => {
 			found = true;
 			catObject.kpopCatFound = true;
