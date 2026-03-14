@@ -1,14 +1,23 @@
 <script lang="ts">
-	import SolidSimulation, {
-		Solid,
-		startSimulation,
-		stopSimulation
-	} from './SolidSimulation.svelte';
+	import { addSolid, Solid, startSimulation, stopSimulation } from './SolidSimulation.svelte';
+	import { catObject } from '$lib/data.svelte';
 	import { onNavigate } from '$app/navigation';
+	import { onMount } from 'svelte';
 
 	let free = $state(false);
 	let isDragging = $state(false);
-	let cat = new Solid(0, 0);
+	let cat = new Solid(0, 0, () => {
+		console.log('Collided...');
+		if (!catObject.orangeCatFound) {
+			catObject.orangeCatFound = true;
+			catObject.total += 1;
+		}
+		free = false;
+	});
+
+	onMount(() => {
+		addSolid(cat);
+	});
 
 	onNavigate(() => {
 		stopSimulation();
@@ -18,7 +27,7 @@
 		if (isDragging) {
 			isDragging = false;
 			cat.unsetKinematic();
-			startSimulation([cat]);
+			startSimulation();
 		}
 	}
 
@@ -53,7 +62,5 @@
 	class=" {free ? 'absolute top-0 left-0' : 'inline'} touch-none text-xl select-none lg:text-3xl"
 	>😼</span
 >
-
-<SolidSimulation></SolidSimulation>
 
 <svelte:window onpointermove={onDrag} onpointerup={onDragStop} />

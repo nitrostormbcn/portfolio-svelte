@@ -1,9 +1,9 @@
 <script lang="ts" module>
-	import Box from './Box.svelte';
 	const g = 10;
 	let rect: HTMLDivElement | undefined = $state();
 	let endSimulation = true;
 	let t0 = -1;
+	let solids = $state<Solid[]>([]);
 
 	export class Solid {
 		x = $state(0);
@@ -14,11 +14,13 @@
 		h = 0;
 		t0: number;
 		isKinematic = false;
+		onColision: () => void;
 		elementReference = $state<HTMLElement>();
-		constructor(x0: number, y0: number) {
+		constructor(x0: number, y0: number, onColision: () => void) {
 			this.x = x0;
 			this.y = y0;
 			this.t0 = Date.now();
+			this.onColision = onColision;
 		}
 
 		setPosition(x: number, y: number) {
@@ -57,12 +59,24 @@
 		unsetKinematic() {
 			this.isKinematic = false;
 		}
+
+		isInside(other: Solid) {
+			const cx = this.x + this.w / 2;
+			const cy = this.y + this.h / 2;
+			const inX = cx <= other.x + other.w && cx >= other.x;
+			const inY = cy <= other.y + other.h && cy >= other.y;
+			return inX && inY;
+		}
 	}
 
-	export function startSimulation(solids: Solid[]) {
+	export function addSolid(solid: Solid) {
+		solids.push(solid);
+	}
+
+	export function startSimulation() {
 		if (endSimulation) {
 			endSimulation = false;
-			nextFrame(solids);
+			nextFrame();
 		}
 	}
 
@@ -71,7 +85,7 @@
 		endSimulation = true;
 	}
 
-	function nextFrame(solids: Solid[]) {
+	function nextFrame() {
 		requestAnimationFrame((tf) => {
 			mainLoop(tf, solids);
 		});
@@ -84,7 +98,7 @@
 		}
 		if (t0 < 0) {
 			t0 = tf;
-			nextFrame(solids);
+			nextFrame();
 			return;
 		}
 		if (!rect) return;
@@ -116,11 +130,19 @@
 			}
 			o.draw();
 		});
+		for (let i = 0; i < solids.length - 1; i++) {
+			const elementI = solids[i];
+			for (let j = i + 1; j < solids.length; j++) {
+				const elementJ = solids[j];
+				if (elementI.isInside(elementJ) && elementJ.isInside(elementI)) {
+					elementI.onColision();
+					elementJ.onColision();
+				}
+			}
+		}
 		t0 = tf;
-		nextFrame(solids);
+		nextFrame();
 	}
 </script>
 
-<div class="pointer-events-none fixed inset-5 lg:inset-20" bind:this={rect}>
-	<Box></Box>
-</div>
+<div class="pointer-events-none fixed inset-5 lg:inset-20" bind:this={rect}></div>

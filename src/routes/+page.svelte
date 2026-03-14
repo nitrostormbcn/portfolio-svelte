@@ -1,5 +1,7 @@
 <script lang="ts">
 	import DropCat from '$lib/components/Main/DropCat.svelte';
+	import Box from '$lib/components/Main/Box.svelte';
+	import SolidSimulation from '$lib/components/Main/SolidSimulation.svelte';
 </script>
 
 <div class="content text-container my-auto">
@@ -11,6 +13,12 @@
 		></DropCat>
 	</p>
 </div>
+
+<div class="pointer-events-none fixed inset-5 lg:inset-20">
+	<Box></Box>
+</div>
+
+<SolidSimulation></SolidSimulation>
 
 <style>
 	.content {
