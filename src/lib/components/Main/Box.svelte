@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { addSolid, Solid } from './SolidSimulation.svelte';
+	import Cat6 from '$lib/assets/Cat6.png';
+	import { scale } from 'svelte/transition';
+	import { catObject } from '$lib/data.svelte';
 
 	let found = $state(false);
 	let box = new Solid(0, 0, () => {
@@ -18,6 +21,10 @@
 	}
 
 	onMount(() => {
+		if (catObject.orangeCatFound) {
+			found = true;
+			return;
+		}
 		box.setKinematic();
 		if (!ref) {
 			console.log('Box not found');
@@ -44,7 +51,7 @@
 {/if}
 
 {#if found}
-	
+	<img class="absolute right-0 bottom-10 m-5" transition:scale src={Cat6} alt="Orange Cat" />
 {/if}
 
 <style>
