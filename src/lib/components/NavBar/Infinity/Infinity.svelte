@@ -46,7 +46,7 @@
 </svelte:head>
 
 <div
-	class="absolute flex h-15 w-full items-center justify-center px-5
+	class="absolute flex h-15 w-full items-center justify-center px-5 z-50
 	lg:h-26 {interceptClicks ? 'pointer-events-auto' : 'pointer-events-none'}"
 >
 	{#if states.getCurrentState() === 'start'}
