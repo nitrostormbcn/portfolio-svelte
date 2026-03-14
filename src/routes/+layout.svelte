@@ -30,7 +30,7 @@
 	}
 
 	.page {
-		min-height: 100vh;
+		min-height: 100dvh;
 		margin: 0;
 		display: grid;
 		grid-template-rows: auto 1fr auto;
