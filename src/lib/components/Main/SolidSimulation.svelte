@@ -24,15 +24,17 @@
 		}
 
 		setPosition(x: number, y: number) {
+			const cx = x - this.w / 2;
+			const cy = y - this.h / 2;
 			if (this.isKinematic) {
 				const tf = Date.now();
 				const dt = (tf - this.t0) / 1000;
-				this.vx = (x - this.x) / dt;
-				this.vy = (y - this.y) / dt;
+				this.vx = (cx - this.x) / dt;
+				this.vy = (cy - this.y) / dt;
 				this.t0 = tf;
 			}
-			this.x = x;
-			this.y = y;
+			this.x = cx;
+			this.y = cy;
 		}
 
 		setPositionAndSize(x: number, y: number, w: number, h: number) {
