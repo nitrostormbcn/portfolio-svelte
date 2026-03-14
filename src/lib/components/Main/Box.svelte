@@ -54,6 +54,10 @@
 	<img class="absolute right-0 bottom-10 m-5" transition:scale src={Cat6} alt="Orange Cat" />
 {/if}
 
+<svelte:head>
+	<link rel="preload" as="image" href={Cat6} />
+</svelte:head>
+
 <style>
 	.rest {
 		rotate: 0deg;
