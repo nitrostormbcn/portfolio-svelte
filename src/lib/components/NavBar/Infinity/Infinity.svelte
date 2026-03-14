@@ -11,7 +11,9 @@
 	let states = new LinearStateMachine(['start', 'infinity', 'domain', 'dismissed']);
 
 	let width = $derived(94 / (clickDepth === 0 ? 1 : clickDepth));
-	let zvalue = $derived(['infinity', 'domain'].includes(states.getCurrentState()) ? 50 : -10);
+	let interceptClicks: boolean = $derived(
+		['infinity', 'domain'].includes(states.getCurrentState())
+	);
 
 	afterNavigate(() => {
 		if (states.getCurrentState() === 'dismissed') {
@@ -43,7 +45,10 @@
 	<link rel="preload" as="image" href={cat3} />
 </svelte:head>
 
-<div class="absolute flex h-26 w-full items-center justify-center" style="z-index: {zvalue};">
+<div
+	class="absolute flex h-15 w-full items-center justify-center px-5
+	lg:h-26 {interceptClicks ? 'pointer-events-auto' : 'pointer-events-none'}"
+>
 	{#if states.getCurrentState() === 'start'}
 		<Dot clazz="bg-blue-700"></Dot>
 	{/if}
