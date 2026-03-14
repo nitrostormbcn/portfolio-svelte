@@ -11,6 +11,7 @@
 	let ball = $state(cat21);
 	let visible = $state(false);
 	let shoot = $state(false);
+	let dismiss = $state<number>();
 	function onTrigger(level: string) {
 		switch (level) {
 			case 'u':
@@ -30,6 +31,10 @@
 		setTimeout(() => {
 			shoot = false;
 		}, 200);
+		clearTimeout(dismiss);
+		dismiss = setTimeout(() => {
+			visible = false;
+		}, 5000);
 	}
 </script>
 
