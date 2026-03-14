@@ -9,7 +9,7 @@ export class OverseerTravel {
 	winCallback: () => void;
 	constructor(winCallback: () => void) {
 		this.currentLevel = 0;
-		this.lastIndex = -1;
+		this.lastIndex = -2;
 		this.winCallback = winCallback;
 		this.finished = false;
 	}
