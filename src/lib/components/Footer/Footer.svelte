@@ -1,5 +1,5 @@
 <script lang="ts">
-	import SvelteLogo from '$lib/components/icons/SvelteLogo.svelte';
+	import SvelteLogo from '$lib/components/Icons/SvelteLogo.svelte';
 	import Fighter from './Fighter.svelte';
 	import cat2 from '$lib/assets/Cat2.png';
 	import cat21 from '$lib/assets/Cat21.png';

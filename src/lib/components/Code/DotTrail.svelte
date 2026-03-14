@@ -1,7 +1,7 @@
 <script lang="ts">
-	import AndroidLogo from '../icons/AndroidLogo.svelte';
+	import AndroidLogo from '$lib/components/Icons/AndroidLogo.svelte';
 	import HoverDot from './HoverDot.svelte';
-	import SvelteLogo from '../icons/SvelteLogo.svelte';
+	import SvelteLogo from '$lib/components/Icons/SvelteLogo.svelte';
 	interface Props {
 		logo: Logo;
 	}
