@@ -7,7 +7,6 @@
 
 	let found = $state(false);
 	let box = new Solid(0, 0, () => {
-		console.log('Collided...');
 		found = true;
 	});
 	let ref = $state<HTMLElement>();

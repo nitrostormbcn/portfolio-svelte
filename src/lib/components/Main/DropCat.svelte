@@ -7,7 +7,6 @@
 	let free = $state(false);
 	let isDragging = $state(false);
 	let cat = new Solid(0, 0, () => {
-		console.log('Collided...');
 		if (!catObject.orangeCatFound) {
 			catObject.orangeCatFound = true;
 			catObject.total += 1;

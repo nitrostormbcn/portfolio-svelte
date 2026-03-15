@@ -54,7 +54,6 @@
 		gameStates.nextState();
 		shownPage = getNextPage(shownPage);
 		decoy = false;
-		console.log(shownPage, gameStates.getCurrentState());
 	}
 
 	function getNextPage(currentValue: string): string {
