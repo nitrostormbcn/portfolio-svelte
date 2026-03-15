@@ -18,5 +18,6 @@ type CatObject = {
 	kpopCatFound: boolean;
 	nightCatFound: boolean;
 	orangeCatFound: boolean;
+	ninjaCatFound: boolean
 	total: number;
 };

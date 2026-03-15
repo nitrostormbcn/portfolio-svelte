@@ -5,5 +5,6 @@ export const catObject: CatObject = $state({
 	kpopCatFound: false,
 	nightCatFound: false,
 	orangeCatFound: false,
+	ninjaCatFound: false,
 	total: 0
 });

@@ -1,11 +1,14 @@
 <script lang="ts">
 	import { afterNavigate } from '$app/navigation';
 	import { page } from '$app/state';
+	import { catObject } from '$lib/data.svelte';
 	import { LinearStateMachine } from '../NavBar/Infinity/LinearStateMachine.svelte';
+	import Cat7 from '$lib/assets/Cat1.png';
 	const VALID_PAGES = ['main', 'code', 'art', 'about'];
 
-	let gameStates = new LinearStateMachine(['Decoy', 'Decoy', 'Decoy', 'Hidden']);
-	let show = $state(false);
+	let gameStates = new LinearStateMachine(['Decoy', 'Decoy', 'Decoy', 'Hidden', 'Win']);
+	let decoy = $state(false);
+	let ninja = $state(false);
 	let shownPage = VALID_PAGES[2];
 
 	let height = $state(0);
@@ -14,21 +17,41 @@
 	let py = $state(0);
 
 	afterNavigate(() => {
+		if (gameStates.getCurrentState() === 'Win') {
+			decoy = false;
+			shownPage = '';
+			return;
+		}
 		height = document.body.scrollHeight;
 		width = document.body.scrollWidth;
 		const routeRaw = page.route.id?.replace('/', '');
 		const route = routeRaw === '' ? 'main' : routeRaw;
-		show = route === shownPage;
-		if (show) {
-			px = Math.random() * width;
-			py = Math.random() * height;
+		if (gameStates.getCurrentState() === 'Decoy') {
+			decoy = route === shownPage;
+			ninja = false;
+		} else if (gameStates.getCurrentState() === 'Hidden') {
+			decoy = false;
+			ninja = route === shownPage;
 		}
+		px = Math.random() * width;
+		py = Math.random() * height;
 	});
 
-	function nextTarget() {
+	function nextLevel() {
+		if (gameStates.getCurrentState() === 'Hidden' && !catObject.ninjaCatFound) {
+			catObject.nightCatFound = true;
+			catObject.total += 1;
+			gameStates.nextState();
+		}
+		if (gameStates.getCurrentState() === 'Win') {
+			decoy = false;
+			ninja = false;
+			shownPage = '';
+			return;
+		}
 		gameStates.nextState();
 		shownPage = getNextPage(shownPage);
-		show = false;
+		decoy = false;
 		console.log(shownPage, gameStates.getCurrentState());
 	}
 
@@ -41,12 +64,23 @@
 	}
 </script>
 
-{#if show}
+{#if decoy}
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<span
 		class="absolute cursor-pointer text-2xl"
 		style="left: {px}px; top: {py}px;"
-		onclick={nextTarget}>🐈‍⬛</span
+		onclick={nextLevel}>🐈‍⬛</span
 	>
+{/if}
+{#if ninja}
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+	<img
+		src={Cat7}
+		alt="Ninja cat"
+		class="absolute -top-40"
+		style="left: {px}px;"
+		onclick={nextLevel}
+	/>
 {/if}
