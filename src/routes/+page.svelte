@@ -4,7 +4,7 @@
 	import SolidSimulation from '$lib/components/Main/SolidSimulation.svelte';
 </script>
 
-<div class="content text-container my-auto cursor-grab touch-none">
+<div class="content text-container my-auto cursor-grab lg:cursor-auto touch-none">
 	<h1 class="mb-10 text-2xl lg:text-7xl">
 		This is <span style="color: var(--color-primary);">Nitrostorm</span>'s project vault!
 	</h1>
