@@ -4,6 +4,7 @@
 	import NavBar from '$lib/components/NavBar/NavBar.svelte';
 	import Footer from '$lib/components/Footer/Footer.svelte';
 	import Overseer from '$lib/components/Overseer/Overseer.svelte';
+	import NinjaSpawn from '$lib/components/Ninja/NinjaSpawn.svelte';
 
 	let { children } = $props();
 </script>
@@ -15,6 +16,7 @@
 </div>
 
 <Overseer></Overseer>
+<NinjaSpawn></NinjaSpawn>
 
 <style>
 	:global(body) {

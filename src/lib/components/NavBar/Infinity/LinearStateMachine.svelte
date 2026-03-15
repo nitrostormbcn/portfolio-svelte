@@ -18,5 +18,13 @@
 			}
 			this.currentState = index;
 		}
+
+		nextState(): string {
+			this.currentState += 1;
+			if (this.currentState >= this.states.length) {
+				this.currentState = this.states.length - 1;
+			}
+			return this.states[this.currentState];
+		}
 	}
 </script>
