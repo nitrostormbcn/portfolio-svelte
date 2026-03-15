@@ -7,6 +7,7 @@
 	let gameStates = new LinearStateMachine(['Decoy', 'Decoy', 'Decoy', 'Hidden']);
 	let show = $state(false);
 	let shownPage = VALID_PAGES[2];
+
 	let height = $state(0);
 	let width = $state(0);
 	let px = $state(0);
@@ -26,12 +27,17 @@
 
 	function nextTarget() {
 		gameStates.nextState();
-		let candidatePage = VALID_PAGES[Math.floor(Math.random() * VALID_PAGES.length)];
+		shownPage = getNextPage(shownPage);
+		show = false;
+		console.log(shownPage, gameStates.getCurrentState());
+	}
+
+	function getNextPage(currentValue: string): string {
+		let candidatePage = currentValue;
 		while (shownPage === candidatePage) {
 			candidatePage = VALID_PAGES[Math.floor(Math.random() * VALID_PAGES.length)];
 		}
-		shownPage = candidatePage;
-		show = false;
+		return candidatePage;
 	}
 </script>
 
