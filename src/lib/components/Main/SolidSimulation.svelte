@@ -85,6 +85,7 @@
 	export function stopSimulation() {
 		t0 = -1;
 		endSimulation = true;
+		solids = [];
 	}
 
 	function nextFrame() {
